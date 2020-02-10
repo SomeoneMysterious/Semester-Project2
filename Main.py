@@ -17,9 +17,13 @@ tk.resizable(width=False, height=False)
 canvas.pack()
 line = canvas.create_line(0, 0, x, y)
 tk.update()
+lives = 50
+ogLives = lives
 time.sleep(5)
 #y = y-2
-for y in range(y, 250, -1):
+for lives in range(lives, -1, -1):
+    y = ogY/ogLives*lives
+    x = ogX/ogLives*lives
     midx = x/2
     midy = y/2
     offx = int(midox-midx)
@@ -29,8 +33,7 @@ for y in range(y, 250, -1):
     canvas.coords(line, (-offx, -offy, ogX, ogY))
     canvas.pack()
     tk.update()
-    x = x-ratio
-    time.sleep(.05)
+    time.sleep(.2)
 time.sleep(5)
 print(str(x)+'-'+str(y))
 canvas.config(width=ogX, height=ogY)
