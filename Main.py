@@ -9,15 +9,18 @@ print(ratio)
 print(str(x)+"-"+str(y))
 ogX = x
 ogY = y
-midox = x/2
-midoy = y/2
+midx = x/2
+midy = y/2
+midox = midx
+midoy = midy
 canvas = Canvas(tk, width=x, height=y)
 tk.resizable(width=False, height=False)
 canvas.pack()
 tk.geometry("+-7+0")
 line = canvas.create_line(0, 0, x, y)
+tower = canvas.create_rectangle(midx-25, midy-25, midx+25, midy+25, fill="green")
 tk.update()
-lives = 50
+lives = 400
 ogLives = lives
 time.sleep(5)
 #y = y-2
@@ -29,13 +32,14 @@ for lives in range(lives, -1, -1):
     offx = int(midox-midx)-7
     offy = int(midoy-midy)
     canvas.config(width=x, height=y)
-    tk.geometry('+'+str(offx)+'+'+str(offy))
+    if (x > 115):
+        tk.geometry('+'+str(offx)+'+'+str(offy))
     canvas.coords(line, (-offx, -offy, ogX, ogY))
+    canvas.coords(tower, (midx-25, midy-25, midx+25, midy+25))
     canvas.pack()
     tk.update()
-    time.sleep(.2)
 time.sleep(5)
 print(str(x)+'-'+str(y))
 canvas.config(width=ogX, height=ogY)
-tk.geometry("+0+0")
+tk.geometry("+-7+0")
 tk.update()
