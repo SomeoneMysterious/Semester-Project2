@@ -31,7 +31,7 @@ class Game:
         self.clickX = 0
         self.clickY = 0
         tk.bind("<Button 1>", self.mouseClick)
-        self.enemyCtrl = Enemies()
+        self.enemyCtrl = EnemyCtrl(self)
         self.tower = Tower(self)
         self.titleScreen()
 
@@ -45,11 +45,13 @@ class Game:
         self.tower.startGame()
         self.enemyCtrl.startGame()
         self.canvas.delete("titleText")
+        tk.update()
+        time.sleep(2)
         self.handleGame()
 
     def handleGame(self):
         while self.gameRunning:
-            self.enemyCtrl.moveEnemies()
+            self.enemyCtrl.handleEnemies()
             if self.health != self.lastHealth:
                 self.lastHealth = self.health
                 self.shrinkWindow()
@@ -93,14 +95,16 @@ class Game:
 
 
 class Tower:
+
     def __init__(self, gamein):
         self.game = gamein
-        self.tower = self.game.canvas.create_rectangle(midx-25, midy-25, midx+25, midy+25, fill="green")
+        self.towerImg = PhotoImage(file='Images\\towerImg.gif')
+        self.tower = self.game.canvas.create_image(midx, midy, image=self.towerImg)
         self.hideTower()
         tk.update()
 
     def moveTower(self):
-        self.game.canvas.coords(self.tower, (midx-25, midy-25, midx+25, midy+25))
+        self.game.canvas.coords(self.tower, (midx, midy))
         tk.update()
 
     def startGame(self):
@@ -113,19 +117,60 @@ class Tower:
         self.game.canvas.itemconfigure(self.tower, state='normal')
 
 
-class Enemies:
+class EnemyCtrl:
+    enemyIDs = []
+    round = 1
 
-    def __init__(self):
-        pass
+    def __init__(self, gamein):
+        self.game = gamein
 
     def startGame(self):
-        pass
+        self.enemyIDs.append(Enemy(self, self.game, 1))
+
+    def handleEnemies(self):
+        self.moveEnemies()
 
     def moveEnemies(self):
         pass
 
     def winShrinkMove(self):
-        pass
+        self.enemyIDs[0].winShrinkMove()
+        tk.update()
+
+
+class Enemy:
+    def __init__(self, enemyCtrlIn, gameIn, level):
+        self.enemyCtrl = enemyCtrlIn
+        self.game = gameIn
+        self.level = level
+        self.speed = 10+(0.5*enemyCtrlIn.round)
+        self.img1 = PhotoImage(file='Images\\stick2.gif')
+        self.x = self.y = self.dispX = self.dispY = self.disp = 0
+        self.spawnSelf()
+
+    def spawnSelf(self):
+        # Screen must be bigger than 30 for both sides or this will break
+        wall = random.randint(1, 4)
+        if wall == 1:  # Top
+            self.y = 30
+            self.x = random.randint(30, ogX-30)
+        elif wall == 2:  # Bottom
+            self.y = ogY-30
+            self.x = random.randint(30, ogX-30)
+        elif wall == 3:  # Left
+            self.x = 30
+            self.y = random.randint(30, ogY-30)
+        else:  # Right
+            self.x = ogX-30
+            self.y = random.randint(30, ogY-30)
+        self.dispX = self.x-offx
+        self.dispY = self.y-offy
+        self.disp = self.game.canvas.create_image(self.dispX, self.dispY, image=self.img1)
+
+    def winShrinkMove(self):
+        self.dispX = self.x - offx
+        self.dispY = self.y - offy
+        self.game.canvas.coords(self.disp, (self.dispX, self.dispY))
 
 
 game = Game()
