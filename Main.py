@@ -46,7 +46,6 @@ class Game:
         self.enemyCtrl.startGame()
         self.canvas.delete("titleText")
         tk.update()
-        time.sleep(2)
         self.handleGame()
 
     def handleGame(self):
@@ -57,7 +56,6 @@ class Game:
                 self.shrinkWindow()
             if self.health <= 0:
                 self.gameRunning = False
-            self.shrinkTest()
             tk.update()
         self.endScreen()
 
@@ -74,7 +72,6 @@ class Game:
             tk.geometry('+'+str(offx)+'+'+str(offy))
         self.canvas.pack()
         self.updateLocations()
-        tk.update()
 
     def updateLocations(self):
         self.tower.moveTower()
@@ -85,9 +82,13 @@ class Game:
             self.health -= 1
 
     def mouseClick(self, clickloc):
-        self.clickChecked = False
-        self.clickX = clickloc.x
-        self.clickY = clickloc.y
+        print(clickloc)
+        if self.gameRunning:
+            self.enemyCtrl.checkClickedLocation(clickloc.x, clickloc.y)
+        else:
+            self.clickChecked = False
+            self.clickX = clickloc.x
+            self.clickY = clickloc.y
 
     def endScreen(self):
         tk.destroy()
@@ -101,11 +102,9 @@ class Tower:
         self.towerImg = PhotoImage(file='Images\\towerImg.gif')
         self.tower = self.game.canvas.create_image(midx, midy, image=self.towerImg)
         self.hideTower()
-        tk.update()
 
     def moveTower(self):
         self.game.canvas.coords(self.tower, (midx, midy))
-        tk.update()
 
     def startGame(self):
         self.showTower()
@@ -125,17 +124,26 @@ class EnemyCtrl:
         self.game = gamein
 
     def startGame(self):
-        self.enemyIDs.append(Enemy(self, self.game, 1))
+        for w in range(0, 10):
+            self.enemyIDs.append(Enemy(self, self.game, self.round))
 
     def handleEnemies(self):
         self.moveEnemies()
 
     def moveEnemies(self):
-        pass
+        for w in range(-1, len(self.enemyIDs)-1):
+            self.enemyIDs[w].moveSelf()
+
+    def checkClickedLocation(self, clickX, clickY):
+        for w in range(-1, len(self.enemyIDs)-1):
+            killed = self.enemyIDs[w].checkClickedLocation(clickX, clickY)
+            if killed:
+                del(self.enemyIDs[w])
+                w -= 1
 
     def winShrinkMove(self):
-        self.enemyIDs[0].winShrinkMove()
-        tk.update()
+        for w in range(-1, len(self.enemyIDs)-1):
+            self.enemyIDs[w].baseMove()
 
 
 class Enemy:
@@ -143,34 +151,77 @@ class Enemy:
         self.enemyCtrl = enemyCtrlIn
         self.game = gameIn
         self.level = level
-        self.speed = 10+(0.5*enemyCtrlIn.round)
+        self.speedPPS = 100 + (1 * enemyCtrlIn.round)  # PPS stands for Pixels Per Second
         self.img1 = PhotoImage(file='Images\\stick2.gif')
-        self.x = self.y = self.dispX = self.dispY = self.disp = 0
+        self.x = self.y = self.dispX = self.dispY = self.disp = self.spawnWall = self.m = self.b = self.oldMove = self.lastMove = 0
+        self.lastTime = time.time()
+        self.stopped = False
         self.spawnSelf()
 
     def spawnSelf(self):
         # Screen must be bigger than 30 for both sides or this will break
-        wall = random.randint(1, 4)
-        if wall == 1:  # Top
+        self.spawnWall = random.randint(1, 4)
+        if self.spawnWall == 1:  # Top
             self.y = 30
-            self.x = random.randint(30, ogX-30)
-        elif wall == 2:  # Bottom
+            while True:
+                self.x = random.randint(30, ogX-30)
+                if abs(midox-self.x) > 10:
+                    break
+        elif self.spawnWall == 2:  # Bottom
             self.y = ogY-30
-            self.x = random.randint(30, ogX-30)
-        elif wall == 3:  # Left
+            while True:
+                self.x = random.randint(30, ogX-30)
+                if abs(midox-self.x) > 10:
+                    break
+        elif self.spawnWall == 3:  # Left
             self.x = 30
             self.y = random.randint(30, ogY-30)
         else:  # Right
             self.x = ogX-30
             self.y = random.randint(30, ogY-30)
+        self.m = (midoy-self.y)/(midox-self.x)
+        self.b = midoy+self.m*midox
         self.dispX = self.x-offx
         self.dispY = self.y-offy
         self.disp = self.game.canvas.create_image(self.dispX, self.dispY, image=self.img1)
+        self.lastTime = time.time()
 
-    def winShrinkMove(self):
+    def moveSelf(self):
+        self.oldMove = self.lastMove
+        self.lastMove = self.x+self.y
+        if not self.stopped:
+            if abs(midoy-self.y) > 55 or abs(midox-self.x-6) > 40:
+                Time = time.time()
+                if self.x > midox:
+                    self.x -= self.speedPPS*(Time-self.lastTime)
+                else:
+                    self.x += self.speedPPS*(Time-self.lastTime)
+                self.y = abs(-1*self.m*self.x+self.b-ogY)
+                self.lastTime = Time
+                self.baseMove()
+                if self.oldMove == self.x+self.y and self.oldMove != self.lastMove:
+                    self.stopped = True
+                    self.lastTime = time.time()
+            else:
+                self.stopped = True
+                self.lastTime = time.time()
+        else:
+            Time = time.time()
+            if self.lastTime+1 <= Time:
+                self.game.health -= 1
+                self.lastTime = Time
+
+    def baseMove(self):
         self.dispX = self.x - offx
         self.dispY = self.y - offy
         self.game.canvas.coords(self.disp, (self.dispX, self.dispY))
+
+    def checkClickedLocation(self, clickX, clickY):
+        if abs(self.dispX-clickX) <= 5 and abs(self.dispY-clickY) <= 10:
+            self.game.canvas.delete(self.disp)
+            return True
+        else:
+            return False
 
 
 game = Game()
