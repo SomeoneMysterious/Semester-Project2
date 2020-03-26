@@ -5,6 +5,7 @@ import sys
 tk = Tk()
 x = tk.winfo_screenwidth()
 y = tk.winfo_screenheight()-63
+print(x)
 ogX = x
 ogY = y
 midx = x/2
@@ -124,7 +125,11 @@ class EnemyCtrl:
         self.game = gamein
 
     def startGame(self):
-        for w in range(0, 10):
+        self.startRound()
+
+    def startRound(self):
+        self.round += 1
+        for w in range(0, 4+self.round):
             self.enemyIDs.append(Enemy(self, self.game, self.round))
 
     def handleEnemies(self):
@@ -135,11 +140,15 @@ class EnemyCtrl:
             self.enemyIDs[w].moveSelf()
 
     def checkClickedLocation(self, clickX, clickY):
+        toDelete = []
         for w in range(-1, len(self.enemyIDs)-1):
             killed = self.enemyIDs[w].checkClickedLocation(clickX, clickY)
             if killed:
-                del(self.enemyIDs[w])
-                w -= 1
+                toDelete.append(w)
+        for i in sorted(toDelete, reverse=True):
+            del self.enemyIDs[i]
+        if len(self.enemyIDs) == 0:
+            self.startRound()
 
     def winShrinkMove(self):
         for w in range(-1, len(self.enemyIDs)-1):
@@ -151,7 +160,7 @@ class Enemy:
         self.enemyCtrl = enemyCtrlIn
         self.game = gameIn
         self.level = level
-        self.speedPPS = 100 + (1 * enemyCtrlIn.round)  # PPS stands for Pixels Per Second
+        self.speedPPS = 75 + (3 * enemyCtrlIn.round)  # PPS stands for Pixels Per Second
         self.img1 = PhotoImage(file='Images\\stick2.gif')
         self.x = self.y = self.dispX = self.dispY = self.disp = self.spawnWall = self.m = self.b = self.oldMove = self.lastMove = 0
         self.lastTime = time.time()
@@ -167,12 +176,16 @@ class Enemy:
                 self.x = random.randint(30, ogX-30)
                 if abs(midox-self.x) > 10:
                     break
+            self.speedPPS -= abs(abs(midx - self.x) / 20 - 38.4)
+            print(self.speedPPS, self.x, self.y)
         elif self.spawnWall == 2:  # Bottom
             self.y = ogY-30
             while True:
                 self.x = random.randint(30, ogX-30)
                 if abs(midox-self.x) > 10:
                     break
+            self.speedPPS -= abs(abs(midx - self.x) / 20 - 38.4)
+            print(self.speedPPS, self.x, self.y)
         elif self.spawnWall == 3:  # Left
             self.x = 30
             self.y = random.randint(30, ogY-30)
@@ -217,7 +230,7 @@ class Enemy:
         self.game.canvas.coords(self.disp, (self.dispX, self.dispY))
 
     def checkClickedLocation(self, clickX, clickY):
-        if abs(self.dispX-clickX) <= 5 and abs(self.dispY-clickY) <= 10:
+        if abs(self.dispX-clickX) <= 8 and abs(self.dispY-clickY) <= 16:
             self.game.canvas.delete(self.disp)
             return True
         else:
