@@ -6,6 +6,7 @@ tk = Tk()
 x = tk.winfo_screenwidth()
 y = tk.winfo_screenheight()-63
 print(x)
+print(y)
 ogX = x
 ogY = y
 midx = x/2
@@ -61,9 +62,12 @@ class Game:
         self.endScreen()
 
     def shrinkWindow(self):
+        # stop shrinking y at about 100, stop shrinking x at around 70
         global x, y, midx, midy, offx, offy
         y = ogY/self.ogHealth*self.health
         x = ogX/self.ogHealth*self.health
+        print(x)
+        print(y)
         midx = x/2
         midy = y/2
         offx = int(midox-midx)-7
@@ -78,12 +82,7 @@ class Game:
         self.tower.moveTower()
         self.enemyCtrl.winShrinkMove()
 
-    def shrinkTest(self):
-        if random.randint(1, 100) == 10:
-            self.health -= 1
-
     def mouseClick(self, clickloc):
-        print(clickloc)
         if self.gameRunning:
             self.enemyCtrl.checkClickedLocation(clickloc.x, clickloc.y)
         else:
@@ -160,7 +159,7 @@ class Enemy:
         self.enemyCtrl = enemyCtrlIn
         self.game = gameIn
         self.level = level
-        self.speedPPS = 75 + (3 * enemyCtrlIn.round)  # PPS stands for Pixels Per Second
+        self.speedPPS = (75 + 3 * enemyCtrlIn.round) / 1536 * ogX  # PPS stands for Pixels Per Second
         self.img1 = PhotoImage(file='Images\\stick2.gif')
         self.x = self.y = self.dispX = self.dispY = self.disp = self.spawnWall = self.m = self.b = self.oldMove = self.lastMove = 0
         self.lastTime = time.time()
@@ -177,7 +176,6 @@ class Enemy:
                 if abs(midox-self.x) > 10:
                     break
             self.speedPPS -= abs(abs(midx - self.x) / 20 - 38.4)
-            print(self.speedPPS, self.x, self.y)
         elif self.spawnWall == 2:  # Bottom
             self.y = ogY-30
             while True:
@@ -185,7 +183,6 @@ class Enemy:
                 if abs(midox-self.x) > 10:
                     break
             self.speedPPS -= abs(abs(midx - self.x) / 20 - 38.4)
-            print(self.speedPPS, self.x, self.y)
         elif self.spawnWall == 3:  # Left
             self.x = 30
             self.y = random.randint(30, ogY-30)
@@ -203,7 +200,7 @@ class Enemy:
         self.oldMove = self.lastMove
         self.lastMove = self.x+self.y
         if not self.stopped:
-            if abs(midoy-self.y) > 55 or abs(midox-self.x-6) > 40:
+            if abs(midoy-self.y) > 50 or abs(midox-self.x-8) > 35:
                 Time = time.time()
                 if self.x > midox:
                     self.x -= self.speedPPS*(Time-self.lastTime)
@@ -238,4 +235,3 @@ class Enemy:
 
 
 game = Game()
-print(game.canvas)
