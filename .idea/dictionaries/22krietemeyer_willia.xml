@@ -4,6 +4,7 @@
       <w>clickloc</w>
       <w>disp</w>
       <w>gamein</w>
+      <w>keypresses</w>
       <w>midox</w>
       <w>midoy</w>
       <w>midx</w>
@@ -11,6 +12,7 @@
       <w>numbplayers</w>
       <w>offx</w>
       <w>offy</w>
+      <w>rhode</w>
     </words>
   </dictionary>
 </component>
