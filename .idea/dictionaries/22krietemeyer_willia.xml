@@ -5,6 +5,7 @@
       <w>disp</w>
       <w>gamein</w>
       <w>keypresses</w>
+      <w>menubar</w>
       <w>midox</w>
       <w>midoy</w>
       <w>midx</w>
@@ -12,7 +13,10 @@
       <w>numbplayers</w>
       <w>offx</w>
       <w>offy</w>
+      <w>pygame</w>
       <w>rhode</w>
+      <w>unpause</w>
+      <w>unpaused</w>
     </words>
   </dictionary>
 </component>
