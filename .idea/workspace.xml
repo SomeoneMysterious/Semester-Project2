@@ -21,20 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="50ea7614-5d32-4167-9cd7-1990cb6d3451" name="Default Changelist" comment="Release Alpha">
       <change afterPath="$PROJECT_DIR$/Images/bullet.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Background1.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/Background2.wav" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Sounds/Footstep.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/shot sound.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/22krietemeyer_willia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/22krietemeyer_willia.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/stick1.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Images/stick1.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/stick1L2.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Images/stick1L2.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/stick2.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Images/stick2.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/stick2L2.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Images/stick2L2.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/stick3.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Images/stick3.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/stick3L2.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Images/stick3L2.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/towerImg.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Images/towerImg.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -65,7 +55,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Minesweeper.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/internetTesting.py" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager" selected="Python.Main">
@@ -186,7 +176,28 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/internetTesting.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/internetTesting.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="randomStuff" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Semester-Project2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\22krietemeyer_willia\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/randomStuff.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -201,6 +212,7 @@
       <item itemvalue="Python.internetTesting" />
       <item itemvalue="Python.Minesweeper" />
       <item itemvalue="Python.StandardDeviation" />
+      <item itemvalue="Python.randomStuff" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -256,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586632595675</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Release Alpha 2.0-The Menubar update!">
+      <created>1588615553903</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1588615553903</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -279,7 +298,8 @@
     <MESSAGE value="First playable version" />
     <MESSAGE value="Added credit to the readme file" />
     <MESSAGE value="Alpha 1.1-Points, New enemy and more!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Alpha 1.1-Points, New enemy and more!" />
+    <MESSAGE value="Release Alpha 2.0-The Menubar update!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Release Alpha 2.0-The Menubar update!" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Inspections" timestamp="1588055216178">
@@ -294,6 +314,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="484" y="95" key="#Minesweeper/0.0.1536.824@0.0.1536.824" timestamp="1586734493608" />
+    <state x="654" y="275" key="#Notifications" timestamp="1588918258705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="654" y="275" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1588918258705" />
     <state x="484" y="8" key="#StandardDeviation" timestamp="1587665569885">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -302,74 +326,90 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="496" y="99" key="#TempGuess/0.0.1536.824@0.0.1536.824" timestamp="1585458711447" />
-    <state x="223" y="67" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585521713395">
+    <state x="223" y="67" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589669293336">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="67" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1585521713395" />
-    <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588530685476">
+    <state x="223" y="67" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1589669293336" />
+    <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588615526600">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1588530685476" />
+    <state x="0" y="0" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1588615526600" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589244847509">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1589244847509" />
     <state x="496" y="99" key="#internetTesting" timestamp="1585513612676">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="496" y="99" key="#internetTesting/0.0.1536.824@0.0.1536.824" timestamp="1585513612676" />
-    <state x="388" y="0" key="CommitChangelistDialog2" timestamp="1588486055381">
+    <state x="484" y="8" key="#randomStuff" timestamp="1589146042262">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="388" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588486055381" />
+    <state x="484" y="8" key="#randomStuff/0.0.1536.824@0.0.1536.824" timestamp="1589146042262" />
+    <state x="388" y="0" key="CommitChangelistDialog2" timestamp="1588615552739">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="388" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588615552739" />
     <state x="147" y="65" key="DiffContextDialog" timestamp="1586632618569">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="147" y="65" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1586632618569" />
-    <state x="548" y="175" key="FileChooserDialogImpl" timestamp="1586734235763">
+    <state x="548" y="175" key="FileChooserDialogImpl" timestamp="1589669290046">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="175" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586734235763" />
-    <state width="1515" height="283" key="GridCell.Tab.0.bottom" timestamp="1588615037049">
+    <state x="548" y="175" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589669290046" />
+    <state width="1515" height="211" key="GridCell.Tab.0.bottom" timestamp="1590156619450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="283" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588615037049" />
+    <state width="1515" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590156619450" />
     <state width="843" height="261" key="GridCell.Tab.0.bottom/0.0.864.1496@0.0.864.1496" timestamp="1585974558564" />
-    <state width="1515" height="283" key="GridCell.Tab.0.center" timestamp="1588615037049">
+    <state width="1515" height="211" key="GridCell.Tab.0.center" timestamp="1590156619450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="283" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588615037049" />
+    <state width="1515" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590156619450" />
     <state width="843" height="261" key="GridCell.Tab.0.center/0.0.864.1496@0.0.864.1496" timestamp="1585974558564" />
-    <state width="1515" height="283" key="GridCell.Tab.0.left" timestamp="1588615037048">
+    <state width="1515" height="211" key="GridCell.Tab.0.left" timestamp="1590156619449">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="283" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588615037048" />
+    <state width="1515" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590156619449" />
     <state width="843" height="261" key="GridCell.Tab.0.left/0.0.864.1496@0.0.864.1496" timestamp="1585974558563" />
-    <state width="1515" height="283" key="GridCell.Tab.0.right" timestamp="1588615037049">
+    <state width="1515" height="211" key="GridCell.Tab.0.right" timestamp="1590156619450">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="283" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588615037049" />
+    <state width="1515" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590156619450" />
     <state width="843" height="261" key="GridCell.Tab.0.right/0.0.864.1496@0.0.864.1496" timestamp="1585974558564" />
-    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1587272663826">
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1590126390002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587272663826" />
-    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1587272663826">
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590126390002" />
+    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1590126390002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1587272663826" />
-    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1587272663825">
+    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1590126390002" />
+    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1590126390002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1587272663825" />
-    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1587272663826">
+    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1590126390002" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1590126390002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1587272663826" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1590126390002" />
+    <state x="294" y="0" key="MergeDialog" timestamp="1588615648794">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="294" y="0" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1588615648794" />
+    <state x="766" y="133" width="388" height="263" key="MultipleFileMergeDialog" timestamp="1588615648803">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="766" y="133" width="388" height="263" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1588615648803" />
     <state x="277" y="55" key="SettingsEditor" timestamp="1584674044423">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584674044423" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1586632628857">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588615675865">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1586632628857" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588615675865" />
     <state x="168" y="120" width="1204" height="584" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1588569716319">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -382,10 +422,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="520" y="80" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1536.824@0.0.1536.824" timestamp="1587274054996" />
-    <state x="341" y="148" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1585504659647">
+    <state x="341" y="148" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1590126005893">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="341" y="148" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.824@0.0.1536.824" timestamp="1585504659647" />
+    <state x="341" y="148" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.824@0.0.1536.824" timestamp="1590126005893" />
     <state x="448" y="201" key="git4idea.merge.GitPullDialog" timestamp="1588484929968">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -394,10 +434,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="307" key="git4idea.ui.GitResetDialog/0.0.1536.824@0.0.1536.824" timestamp="1584674223517" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1588569407978">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1589925367028">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1588569407978" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1589925367028" />
     <state x="491" y="324" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1585413573676">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

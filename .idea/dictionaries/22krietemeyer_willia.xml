@@ -11,10 +11,13 @@
       <w>midx</w>
       <w>midy</w>
       <w>numbplayers</w>
+      <w>offox</w>
+      <w>offoy</w>
       <w>offx</w>
       <w>offy</w>
       <w>pygame</w>
       <w>rhode</w>
+      <w>spacebar</w>
       <w>unpause</w>
       <w>unpaused</w>
     </words>

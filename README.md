@@ -9,21 +9,22 @@ I hope to have actual images used, rather then drawing everything
 I also hope to object-orient these/this program.  
 I may add music, some minor voice commands, or some internet usage.
 
-Changelog for Alpha 2.0:\
-Added top menubar full of commands\
-Added sounds (If you install pygame)\
-Handles if you don't have pygame installed\
-The game can be paused/unpaused through either 'p' key or the menubar\
-Background color can be changed in menubar\
-Volume can be changed if pygame is installed in the menubar\
-Legs of enemies motions can be toggled\
-Fixed enemies possibly going past the tower when not getting updated\
-Made all pictures have a transparent background\
-Note about menubar:\
-The enemies keep on moving if you don't select anything, and will update when the menubar hides.\
-However, if you select something from the menubar, the enemies will not move.\
+Changelog for Alpha 3.0:\
+Added config file to store info for the device\
+Config file handles window making properly\
+Config can now read and save volume, background, and leg animation toggle\
+Background color can be set to rainbow\
+Added a resize window on the menubar-see note below\
+Finally made all enemies have the same base speed, wherever spawned (turns out the ceil of a fraction doesn't help)\
+Fixed the fact that enemies on the top and bottom would screw up speed as the window shrank (using the wrong variable sucks)\
+Fixed (previously unnoticed) enemy spawning oversight\
+Now can change music and effects volumes separately\
+Made winSize class and moved window info to there\
+Notes about resize window on menubar:\
+You must kill the current wave of enemies before it will let you resize\
+The resize window will likely show up behind the game window, so you will need to move the game window out of the way\
 You can find previous changes
-[here.](https://docs.google.com/document/d/e/2PACX-1vQu9zppzxDptuUnBNRg2GZl6WWEkphYIoA3JpsVxn6JS-qemxNlsRyClxXzm0arJIgM8jTZZSgur90j/pub "Changelog Link")
+[here.](https://docs.google.com/document/d/e/2PACX-1vS2e2Rh5Yex9C0EZdmlqtv8b2xIDtFYZAyxIZ1i07mkqaSNMtKd1BJcRvrQUoA2TmBvEzq21a04BVXu/pub "Changelog Link")
 
 Credits:\
 Castle Tower Image:\
