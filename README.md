@@ -2,6 +2,7 @@
 My second semester project.  
 Last semester's project can be found
 [here.](https://github.com/SomeoneMysterious/Semester-Project "My first semester project")
+[![Run on Repl.it](https://repl.it/badge/github/SomeoneMysterious/Semester-Project2)](https://repl.it/github/SomeoneMysterious/Semester-Project2)
   
 Plans for this semester project:  
 I plan to make a wave-based attack game where the window shrinks when you lose health.  
