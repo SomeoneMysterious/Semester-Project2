@@ -29,7 +29,7 @@ class WinSize:
         self.windowCustomised = False
         self.updateWinValues(1)  # Init the remaining vars
         self.config = configparser.ConfigParser()
-        tk.bind("<Escape>", self.game.quit)
+        tk.bind("<Escape>", self.handleClose)
         tk.bind("<Button-3>", self.setCustomised)
         if os.path.exists("config.ini"):
             try:
@@ -178,7 +178,7 @@ class WinSize:
             except TclError as e:
                 print(e)
                 print("You have closed the window!")
-                self.game.quit()
+                self.handleClose()
         if tk2 is not None:
             winfo = tk2.geometry()
         else:
@@ -192,6 +192,15 @@ class WinSize:
         if self.y < 61:
             self.windowCustomised = False
             self.customiseWindow(tk2)
+
+    def handleClose(self, *args):
+        try:
+            tk.destroy()
+        except TclError as e:
+            print(e)
+        if pygameInstalled:
+            mixer.quit()
+        sys.exit(0)
 
 
 class Game:
@@ -447,6 +456,8 @@ class Game:
             tk.destroy()
         except TclError as e:
             print(e)
+        if pygameInstalled:
+            mixer.quit()
         sys.exit()
 
 
@@ -455,7 +466,7 @@ class Tower:
     def __init__(self, gamein, windowin):
         self.game = gamein
         self.window = windowin
-        self.towerImg = PhotoImage(file='Images\\towerImg.gif')
+        self.towerImg = PhotoImage(file='Images/towerImg.gif')
         self.tower = self.game.canvas.create_image(self.window.midx, self.window.midy, image=self.towerImg)
         self.hideTower()
 
@@ -581,14 +592,14 @@ class Enemy:
         if level == 2:
             self.lives = 2
             self.speedPPS -= 9
-            self.img1 = PhotoImage(file='Images\\stick1L2.gif')
-            self.img2 = PhotoImage(file='Images\\stick2L2.gif')
-            self.img3 = PhotoImage(file='Images\\stick3L2.gif')
+            self.img1 = PhotoImage(file='Images/stick1L2.gif')
+            self.img2 = PhotoImage(file='Images/stick2L2.gif')
+            self.img3 = PhotoImage(file='Images/stick3L2.gif')
         else:
             self.lives = 1
-            self.img1 = PhotoImage(file='Images\\stick1.gif')
-            self.img2 = PhotoImage(file='Images\\stick2.gif')
-            self.img3 = PhotoImage(file='Images\\stick3.gif')
+            self.img1 = PhotoImage(file='Images/stick1.gif')
+            self.img2 = PhotoImage(file='Images/stick2.gif')
+            self.img3 = PhotoImage(file='Images/stick3.gif')
 
     def setupDisp(self):
         self.dispX = self.x - self.window.offx
@@ -752,4 +763,5 @@ class Enemy:
         return False
 
 
-game = Game()
+if __name__ == "__main__":
+    game = Game()

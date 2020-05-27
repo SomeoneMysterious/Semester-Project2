@@ -2,28 +2,21 @@
 My second semester project.  
 Last semester's project can be found
 [here.](https://github.com/SomeoneMysterious/Semester-Project "My first semester project")
-[![Run on Repl.it](https://repl.it/badge/github/SomeoneMysterious/Semester-Project2)](https://repl.it/github/SomeoneMysterious/Semester-Project2)
-  
+[![Run on Repl.it](https://repl.it/badge/github/SomeoneMysterious/Semester-Project2)](https://repl.it/github/SomeoneMysterious/Semester-Project2) \
+Built in Python 3.7, won't work in 2.X, Minimum possible (as far as I know) is 3.4 till the end of 3.X
+
 Plans for this semester project:  
 I plan to make a wave-based attack game where the window shrinks when you lose health.  
 I hope to have actual images used, rather then drawing everything  
 I also hope to object-orient these/this program.  
 I may add music, some minor voice commands, or some internet usage.
 
-Changelog for Alpha 3.0:\
-Added config file to store info for the device\
-Config file handles window making properly\
-Config can now read and save volume, background, and leg animation toggle\
-Background color can be set to rainbow\
-Added a resize window on the menubar-see note below\
-Finally made all enemies have the same base speed, wherever spawned (turns out the ceil of a fraction doesn't help)\
-Fixed the fact that enemies on the top and bottom would screw up speed as the window shrank (using the wrong variable sucks)\
-Fixed (previously unnoticed) enemy spawning oversight\
-Now can change music and effects volumes separately\
-Made winSize class and moved window info to there\
-Notes about resize window on menubar:\
-You must kill the current wave of enemies before it will let you resize\
-The resize window will likely show up behind the game window, so you will need to move the game window out of the way\
+Changelog for Alpha 3.1:\
+Fixed a compatibility issue\
+Added proper handling of closing the setup window size window\
+Should now properly run on repl.it\
+Did a very simple python formatting thing (name = main)\
+Removed unnecessary screen shrink file\
 You can find previous changes
 [here.](https://docs.google.com/document/d/e/2PACX-1vS2e2Rh5Yex9C0EZdmlqtv8b2xIDtFYZAyxIZ1i07mkqaSNMtKd1BJcRvrQUoA2TmBvEzq21a04BVXu/pub "Changelog Link")
 
