@@ -19,14 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50ea7614-5d32-4167-9cd7-1990cb6d3451" name="Default Changelist" comment="Release Alpha 3.1-Bugfixes!">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Semester-Project2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Semester-Project2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="50ea7614-5d32-4167-9cd7-1990cb6d3451" name="Default Changelist" comment="Release Alpha 4.0 - The Info Window Update!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screen Shrink.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="255" column="34" lean-forward="true" selection-start-line="255" selection-start-column="34" selection-end-line="255" selection-end-column="34" />
+            <state relative-caret-position="17">
+              <caret line="899" column="17" lean-forward="true" selection-start-line="899" selection-start-column="17" selection-end-line="899" selection-end-column="17" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -60,7 +56,19 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>quit(self</find>
+      <find>mangTxt</find>
+      <find>Shop</find>
+      <find>refil</find>
+      <find>Rainbow</find>
+      <find>wait</find>
+      <find>rainbow</find>
+      <find>paus</find>
+      <find>stopbetweenrounds</find>
+      <find>updateC</find>
     </findStrings>
+    <replaceStrings>
+      <replace>infoTxt</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -236,20 +244,27 @@
       <option name="project" value="LOCAL" />
       <updated>1588615553903</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Release Alpha 3.1-Bugfixes!">
+      <created>1590549831202</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1590549831218</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1040" height="616" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.249501" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.249501" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3285124" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3285124" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39876032" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -302,7 +317,8 @@
     <MESSAGE value="Added credit to the readme file" />
     <MESSAGE value="Alpha 1.1-Points, New enemy and more!" />
     <MESSAGE value="Release Alpha 2.0-The Menubar update!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Release Alpha 2.0-The Menubar update!" />
+    <MESSAGE value="Release Alpha 3.1-Bugfixes!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Release Alpha 3.1-Bugfixes!" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="71" key="#Inspections" timestamp="1588055216178">
@@ -446,11 +462,48 @@
     </state>
     <state x="491" y="324" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.0.1536.824@0.0.1536.824" timestamp="1585413573676" />
   </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.stopBetweenRounds" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>self.game.stopBetweenRounds</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="watch">
+      <expression>
+        <expression-string>self.stopBetweenRounds</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>self.game</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/configparser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="807" selection-start-line="807" selection-end-line="807" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="255" column="34" lean-forward="true" selection-start-line="255" selection-start-column="34" selection-end-line="255" selection-end-column="34" />
+        <state relative-caret-position="17">
+          <caret line="899" column="17" lean-forward="true" selection-start-line="899" selection-start-column="17" selection-end-line="899" selection-end-column="17" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
