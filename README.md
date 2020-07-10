@@ -11,22 +11,16 @@ I hope to have actual images used, rather then drawing everything
 I also hope to object-orient these/this program.  
 I may add music, some minor voice commands, or some internet usage.
 
-Changelog for Alpha 4.0:\
-Added information window (and it's own class)\
-Added a toggle in the menubar to toggle the info window\
-Added a toggle in the menubar to allow auto-pause between rounds (defualt is not)\
-Added a option in the menubar to restart the game - runs everywhere except when resizing window\
-Made text that pops up for each round\
-Made a visible scorecounter that way you can see the score\
-Added a ammo limit and the ability to reload\
-Made it that when the window gets really small, rather than the View window disappearing, the Shop menu becomes S.\
-Made it that way resize window will be done anytime not mid round\
-Added back in varied enemy speeds (forgot about that)\
-Fixed an issue while reading the config that ignored a few options\
-Fixed a compatibility issue that apparently I forgot about (smooth)\
-Changed how the rainbow was coded, hopefully is good for competitive\
-List handleing programmed better (list comprehension)\
-Commented my code because that's important\
+Changelog for Alpha 5.0:\
+Added the new enemy that shoots at the tower\
+Added bullets (and their own class)\
+Added text that displays at the bottom of the information window to tell you things\
+Added in the game a difficulty selector, but difficulties are not impliemented yet\
+You can now set a seed for the game to use to replicate the randomness\
+Seperated each class into it's own file (except tower because it's almost empty)\
+Made the Shop menu able to pop out\
+Made it that way when you setup a new window size, you cannot make it too small in either direction\
+Added Window full sized for 20 secs for 20 Points in the shop\
 You can find previous changes
 [here.](https://docs.google.com/document/d/e/2PACX-1vS2e2Rh5Yex9C0EZdmlqtv8b2xIDtFYZAyxIZ1i07mkqaSNMtKd1BJcRvrQUoA2TmBvEzq21a04BVXu/pub "Changelog Link")
 
