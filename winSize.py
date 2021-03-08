@@ -96,7 +96,7 @@ class WinSize:
             self.offx = int(self.midox - self.midx) + self.offox
             self.offy = int(self.midoy - self.midy) + self.offoy
 
-    def updateConfig(self):  # Called when making a config and when anything in the config is changed
+    def updateConfig(self):  # Called when making a config and when we aren't sure what might have changed
         self.config = configparser.ConfigParser()
         self.config.add_section("window")
         self.config.set("window", "X", str(round(self.ogX)))
@@ -111,12 +111,12 @@ class WinSize:
         else:
             self.config.set("settings", "musicVolume", str(100))
             self.config.set("settings", "effectsVolume", str(100))
-        if os.path.exists("config.ini"):  # If we are making a new config, this prevents errors
+        if os.path.exists("config.ini"):  # If we aren't making a new config
             self.config.set("settings", "backgroundColor", self.game.currColor)
             self.config.set("settings", "moveLegs", str(self.game.enemyCtrl.moveLegs))
             self.config.set("settings", "stopBetweenRounds", str(self.game.stopBetweenRounds))
             self.config.set("settings", "difficulty", str(self.game.difficulty.get()))
-        else:
+        else:  # If the config is new, prevent reading non-set values
             self.config.set("settings", "backgroundColor", "Default")
             self.config.set("settings", "moveLegs", "True")
             self.config.set("settings", "stopBetweenRounds", "False")
@@ -128,6 +128,11 @@ class WinSize:
         with open("config.ini", "w") as file:
             self.config.write(file)
 
+    def editConfig(self, section, item, value):
+        self.config[section][item] = str(value)
+        with open("config.ini", "w") as file:
+            self.config.write(file)
+
     def shrinkWindow(self, setPercent=None):
         if setPercent is None:
             if self.y > 100:  # Keeps window at playable size
@@ -136,11 +141,7 @@ class WinSize:
                 self.x = self.ogX / self.game.ogHealth * self.game.health
             # The following prevents a 2 lined menubar
             if self.x <= 140 and not self.game.dispMenuHidden:
-                self.game.menubar = Menu(self.game.tk)
-                self.game.menubar.add_cascade(label="Game", menu=self.game.gameMenu)
-                self.game.menubar.add_cascade(label="View", menu=self.game.dispMenu)
-                self.game.menubar.add_cascade(label="S.", menu=self.game.shopMenu)
-                self.game.tk.config(menu=self.game.menubar)
+                self.game.rename_menubar("S.")
                 self.game.dispMenuHidden = True
         else:  # Allows end screen to expand
             self.y = self.ogY * setPercent
@@ -180,14 +181,21 @@ class WinSize:
     def customiseWindow(self, tk2=None):
         if tk2 is not None:  # If called from window
             result = simpledialog.messagebox.askokcancel("Window Size",
-                                                         "Configure the window to the size you like it then right click on the window. NOTE: If you just tried to resize and you are seeing this again, your window must be taller in order for the game to run.")
+                                                         "Configure the window to the size you like it then right click"
+                                                         " on the window. NOTE: If you just tried to resize and you are"
+                                                         " seeing this again, your window must be taller in order for"
+                                                         " the game to run.")
         else:
             result = simpledialog.messagebox.askokcancel("Window Size",
-                                                         "It appears to be your first time running on this device. Configure the window to the size you like it then right click on the window. NOTE: If you just tried to resize and you are seeing this again, your window must be taller in order for the game to run.")
+                                                         "It appears to be your first time running on this device. "
+                                                         "Configure the window to the size you like it then right click"
+                                                         " on the window. NOTE: If you just tried to resize and you are"
+                                                         " seeing this again, your window must be taller in order for"
+                                                         " the game to run.")
         if not result:
             return False  # Don't customise if not ok
         while not self.windowCustomised:
-            try:
+            try:  # Handle any window closes
                 self.game.tk.update()
                 if tk2 is not None:
                     tk2.update()

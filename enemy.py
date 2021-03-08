@@ -17,8 +17,8 @@ class Enemy:
         self.window = windowIn
         self.level = level
         # PPS stands for Pixels Per Second
-        self.speedPPS = (75 + 3 * (enemyCtrlIn.round + random.randint(100,
-                                                                      100) / 10) / 1536 * self.window.ogX)
+        self.speedPPS = (75 + (1 + self.game.difficulty.get()) * (enemyCtrlIn.round +
+                                                            random.randint(100, 100) / 10) / 1536 * self.window.ogX)
         self.moveLegs = enemyCtrlIn.moveLegs
         self.stopped = False
         self.landX = 30

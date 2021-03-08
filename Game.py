@@ -5,6 +5,7 @@ from tkinter import colorchooser, simpledialog
 import winSize
 import infoWindow
 import enemyCtrl
+import shopCtrl
 
 pygameInstalled = True
 try:
@@ -13,19 +14,19 @@ except ModuleNotFoundError as er:
     print("Pygame not installed, required for audio, game will not use any audio.")
     pygameInstalled = False
 
-class Game:
-    # Init some vars
-    health = 200
-    ogHealth = lastHealth = health
-    gameRunning = gamePaused = dispMenuHidden = waitForResize = stopBetweenRounds = lastMidRound = schoolFriendly = False
-    clickChecked = midRound = shrinkWin = True
+
+class Game(object):  # Allows for things like getters and setters I think
+    # Init (a bit more than) some vars
+    ogHealth = lastHealth = health = 200
+    gameRunning = gamePaused = dispMenuHidden = waitForResize = stopBetweenRounds = lastMidRound = False
+    clickChecked = midRound = shrinkWin = schoolFriendly = True
     clickX = clickY = volumeSet = rainbowTime = points = menubar = shopMenu = dispMenu = gameMenu = rainbowOn = 0
     bullets = clipSize = seedTxt = 6
     refillTimer = 1.5
-    rainbowList = ['#ff0000', '#ff3700', '#ff6a00', '#ffa200', '#ffd500', '#f2ff00', '#bfff00', '#88ff00',
-                   '#55ff00', '#1eff00', '#00ff15', '#00ff4d', '#00ff80', '#00ffb7', '#00ffea', '#00ddff',
-                   '#00aaff', '#0073ff', '#0040ff', '#0009ff', '#2b00ff', '#6200ff', '#9500ff', '#cc00ff',
-                   '#ff00ff']
+    RAINBOW_LIST = ('#ff0000', '#ff3700', '#ff6a00', '#ffa200', '#ffd500', '#f2ff00', '#bfff00', '#88ff00',
+                    '#55ff00', '#1eff00', '#00ff15', '#00ff4d', '#00ff80', '#00ffb7', '#00ffea', '#00ddff',
+                    '#00aaff', '#0073ff', '#0040ff', '#0009ff', '#2b00ff', '#6200ff', '#9500ff', '#cc00ff',
+                    '#ff00ff')
     difficulties = []
     currColor = "Default"
 
@@ -39,13 +40,14 @@ class Game:
         self.pygameInstalled = pygameInstalled
         self.tk.title("Protect The Base!")
         self.canvas = Canvas(self.tk, width=self.window.x, height=self.window.y)
-        self.tk.resizable(width=False, height=False)  # Window can't be resized
+        self.tk.resizable(width=False, height=False)  # Window can't be manually resized
         self.canvas.pack()
         self.tk.geometry('+' + str(self.window.offx) + '+' + str(self.window.offy))
         self.defBackground = self.canvas["background"]  # Sets defualt background for system compatibility
         self.enemyCtrl = enemyCtrl.EnemyCtrl(self, self.window)
         self.tower = Tower(self, self.window)
-        self.infoManager = None  # Will be made after title screen
+        self.infoManager = infoWindow.InfoManager(self, self.window, self.enemyCtrl)  # Will be setup after title screen
+        self.shopCtrl = shopCtrl.ShopCtrl(self, self.infoManager)
         self.waveNoticeText = self.canvas.create_text(self.window.midx, self.window.midy / 2, text='Wave #1',
                                                       font=('Helvetica', 20))
         self.canvas.itemconfigure(self.waveNoticeText, state="hidden")
@@ -54,8 +56,15 @@ class Game:
         self.seed = random.randrange(sys.maxsize)
         self.titleScreen()  # Runs the title screen
 
-    def bindKeypressesAndMenu(self):
+    def rename_menubar(self, shop_name="Shop", game_name="Game", view_name="View"):
         self.menubar = Menu(self.tk)
+        self.menubar.add_cascade(label=game_name, menu=self.gameMenu)
+        self.menubar.add_cascade(label=view_name, menu=self.dispMenu)
+        self.menubar.add_cascade(label=shop_name, menu=self.shopCtrl.shopMenu)
+        self.tk.config(menu=self.menubar)
+
+    def bindKeypressesAndMenu(self):
+        # Game Menu
         self.gameMenu = Menu(self.tk, tearoff=0)  # Tearoff keeps menus from being able to detach
         if pygameInstalled:
             self.gameMenu.add_command(label="Set Volume %", command=self.changeVolume)
@@ -64,24 +73,22 @@ class Game:
         self.gameMenu.add_command(label="Toggle stop between rounds", command=self.toggleBetweenRoundsPause)
         self.gameMenu.add_command(label="Restart", command=lambda: restart(self))
         self.gameMenu.add_command(label="Quit", command=self.quit)
+        # Display menu
         self.dispMenu = Menu(self.tk, tearoff=0)
         self.dispMenu.add_command(label="Set Background Color", command=self.setBackgroundColor)
         self.dispMenu.add_command(label="Set Background Rainbow", command=self.setBackgroundRainbow)
         self.dispMenu.add_command(label="Toggle Enemy Leg Motion", command=self.enemyCtrl.toggleLegMotion)
         self.dispMenu.add_command(label="Toggle Information Window", command=self.toggleInfoWin)
-        self.shopMenu = Menu(self.tk)
-        self.shopMenu.add_command(label="Clear All Enemies (30 Points)", command=self.enemyCtrl.killAllEnemies)
-        self.shopMenu.add_command(label="Expand window (20s, 20 Points)", command=self.expandWindow)
-        self.menubar.add_cascade(label="Game", menu=self.gameMenu)
-        self.menubar.add_cascade(label="View", menu=self.dispMenu)
-        self.menubar.add_cascade(label="Shop", menu=self.shopMenu)
-        self.tk.config(menu=self.menubar)
+        # Shop menu
+        self.shopCtrl.make_shop("Clear All Enemies", 30, self.shopCtrl.kill_all_enemies, keypress="q")
+        self.shopCtrl.make_shop("Expand Window-20s", 20, self.shopCtrl.expandWindow)
+        self.shopCtrl.make_shop("Expand Clip Size (+1)", 5, self.shopCtrl.expand_clip, 1.1, "w")
+        self.rename_menubar()  # Add them all to the menubar
+        # Add all the keypresses and mouse clicks
         self.tk.bind("<Button 1>", self.mouseClick)  # Left click
         self.tk.bind("<Button 3>", self.startReload)  # Right click
         self.tk.bind("<space>", self.startRound)
         self.tk.bind("<Escape>", self.stopGame)
-        # These next 2 will probably be changed later
-        self.tk.bind("q", self.enemyCtrl.killAllEnemies)
         self.tk.bind('p', self.pauseGame)
         self.tk.bind('e', self.easterEgg)
 
@@ -95,7 +102,8 @@ class Game:
         seedBtn.pack()
         seedBtn.place(x=self.window.midx, y=self.window.midy - 110, anchor=CENTER)
         self.seedTxt = self.canvas.create_text(self.window.midx, self.window.midy - 85,
-                                        text='Current Seed: ' + str(self.seed), font=('Helvetica', 15), tag="titleItem")
+                                               text='Current Seed: ' + str(self.seed), font=('Helvetica', 15),
+                                               tag="titleItem")
         self.canvas.create_text(self.window.midx, self.window.midy - 60, text='Difficulty:',
                                 font=('Helvetica', 15), tag="titleItem")
         options = {"Easy": 1, "Medium": 2, "Hard": 3, "Impossible": 4}
@@ -119,7 +127,6 @@ class Game:
                 print("You have closed the window!")
                 self.quit()
         self.clickChecked = True
-        self.infoManager = infoWindow.infoManager(self, self.window, self.enemyCtrl)
         if pygameInstalled:
             # Game music
             mixer.music.load("Sounds/Background2.wav")
@@ -127,9 +134,18 @@ class Game:
         self.canvas.delete("titleItem")
         [item.destroy() for item in self.difficulties]
         self.difficulties = []
+        if self.difficulty.get() == 1:
+            self.ogHealth = self.lastHealth = self.health = 300
+        elif self.difficulty.get() == 2:
+            self.ogHealth = self.lastHealth = self.health = 200
+        elif self.difficulty.get() == 3:
+            self.ogHealth = self.lastHealth = self.health = 150
+        else:
+            self.ogHealth = self.lastHealth = self.health = 100
         seedBtn.destroy()
         random.seed(self.seed)
         print("The seed for this game was: " + str(self.seed))
+        self.infoManager.start_game()
         self.gameRunning = True
         self.tower.startGame()
         self.tk.update_idletasks()
@@ -147,15 +163,11 @@ class Game:
                                      font=('Helvetica', 35))
         t2 = self.canvas.create_text(self.window.midx, self.window.midy - 140,
                                      text='You got to round %i.' % self.enemyCtrl.round, font=('Helvetica', 20))
-        # Expand window to full size
+        # Expand window to full size in a way that looks cool
         for x in range(0, 101):
             self.window.shrinkWindow(x / 100)
             if self.window.x > 140 and self.dispMenuHidden:
-                self.menubar = Menu(self.tk)
-                self.menubar.add_cascade(label="Game", menu=self.gameMenu)
-                self.menubar.add_cascade(label="View", menu=self.dispMenu)
-                self.menubar.add_cascade(label="Shop", menu=self.shopMenu)
-                self.tk.config(menu=self.menubar)
+                self.rename_menubar()
                 self.dispMenuHidden = False
             self.canvas.coords(t1, (self.window.midx, self.window.midy - 200))
             self.canvas.coords(t2, (self.window.midx, self.window.midy - 140))
@@ -224,7 +236,7 @@ class Game:
 
     def handleRainbow(self):  # Checks and updates rainbow
         if self.currColor == "Rainbow":
-            self.setBackgroundColor(self.rainbowList[self.rainbowOn])
+            self.setBackgroundColor(self.RAINBOW_LIST[self.rainbowOn])
             self.rainbowOn += 1
             self.rainbowOn %= 25
             self.canvas.after(1000, self.handleRainbow)
@@ -261,7 +273,7 @@ class Game:
 
     def toggleBetweenRoundsPause(self):
         self.stopBetweenRounds = not self.stopBetweenRounds
-        self.window.updateConfig()
+        self.window.editConfig("settings", "stopBetweenRounds", self.stopBetweenRounds)
         self.enemyCtrl.unpauseEnemies()
 
     def easterEgg(self, *args):
@@ -269,7 +281,6 @@ class Game:
         if self.gameRunning:
             self.infoManager.displayInfo('How DARE you press the "e" key!')
 
-    # Commence shop items
     def expandWindow(self, *args):
         if self.points < 20:
             print("That item is too expensive.")
@@ -351,20 +362,21 @@ class Game:
                     lastTv = tv.get()
                     ev.set(lastTv)
                     mv.set(lastTv)
-            except TclError:
+            except TclError:  # If window was closed, leave the while loop
                 self.volumeSet = -2
         if self.volumeSet != -2:  # -2 is closed, /100 to make 0-1
             mixer.music.set_volume(mv.get() / 100)
             self.setEffectsVolume(ev.get() / 100)
-            self.window.updateConfig()
+            self.window.editConfig("settings", "musicVolume", str(mv.get()))
+            self.window.editConfig("settings", "musicVolume", str(ev.get()))
         try:
             tk2.destroy()
-        except TclError:
+        except TclError:  # Window was destroyed before, can't be destroyed again
             pass
         self.enemyCtrl.unpauseEnemies()
 
     def setVolume(self):
-        self.volumeSet = 0
+        self.volumeSet = 0  # changes the value to allow the volume setting loop to escape
 
     def setEffectsVolume(self, volume):  # volume must be a float from 0 to 1 inclusive
         mixer.Sound.set_volume(self.enemyCtrl.stepSound, volume)

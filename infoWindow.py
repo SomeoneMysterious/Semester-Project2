@@ -2,7 +2,7 @@ import time  # Making sure tings are based on time not loops
 from tkinter import *
 
 
-class infoManager:
+class InfoManager:
     tk = windowAlive = canvas = healthbar = ammobar = None
     waveText = pointsText = ammoText = infoDisp = infoDisp2 = currTextId = None
 
@@ -11,8 +11,7 @@ class infoManager:
         self.window = windowIn
         self.enemyCtrl = enemyCtrlIn
         self.reloading = False
-        self.makeWindow()
-        self.makeItems()
+        self.windowAlive = False
 
     def makeWindow(self):
         self.windowAlive = True
@@ -38,6 +37,10 @@ class infoManager:
         self.tk.update_idletasks()
         self.tk.geometry('200x160')
         self.tk.update_idletasks()
+
+    def start_game(self):
+        self.makeWindow()
+        self.makeItems()
 
     def toggleWin(self):
         if self.windowAlive:
@@ -91,6 +94,8 @@ class infoManager:
                 self.tk.after_cancel(self.currTextId)
             self.tk.update_idletasks()
             self.currTextId = self.tk.after(5000, self.hideInfo)
+            return True
+        return False
 
     def hideInfo(self):
         self.tk.geometry('200x160')
